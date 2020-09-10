@@ -25,7 +25,7 @@ const HeaderTitle: React.FC<IProps> = (props) => {
                 </View>
                 <View style={styles.text}>
                     <Text numberOfLines={1} style={styles.avatarTitle}>{props.avatarTitle}</Text>
-                    <Text numberOfLines={1} style={styles.avatarDescription}>{props.avatarDescription}</Text>
+                    <Text numberOfLines={2} style={styles.avatarDescription}>{props.avatarDescription}</Text>
                 </View>
             </View>
             <View style={styles.actionHeader}>
