@@ -2,7 +2,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { ISearchBooks } from '../Store/IGoogleApiBooks';
 
-// const apiKey = 'AIzaSyDdLnGOEP3vW7bC_Hs-31ceXMgckCYf3a4';
 const baseUrl = 'https://www.googleapis.com/books/v1/';
 function getAxios() {
     const instanceAxios = axios.create({
