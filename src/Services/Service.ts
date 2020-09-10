@@ -29,11 +29,11 @@ function getAxios() {
     return instanceAxios;
 }
 
-export async function serviceGetBooksBySearchTerm(searchTerm: string): Promise<ISearchBooks>{
+export async function serviceGetBooksBySearchTerm(searchTerm: string, page: number): Promise<ISearchBooks>{
     try {
         const path = 'volumes';
 
-        const response = await getAxios().get(`${path}?q=${searchTerm}`);
+        const response = await getAxios().get(`${path}?q=${searchTerm}&startIndex=${page}&maxResults=10`);
 
         return response.data;
     } catch (e){
