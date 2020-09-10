@@ -1,13 +1,15 @@
 /* eslint-disable prettier/prettier */
 
+import { ISearchBooks } from '../Store/IGoogleApiBooks';
+
 export enum ActionType {
-  INIT = 'INIT',
+  REDUCE_SEARCH_BOOKS = 'REDUCE_SEARCH_BOOKS',
 }
 
-export interface IInit {
-  type: ActionType.INIT;
-  payload: any;
+export interface IReduceSearchBooks {
+  type: ActionType.REDUCE_SEARCH_BOOKS;
+  payload: ISearchBooks;
 }
 
 export type Actions =
-  | IInit
+  | IReduceSearchBooks

@@ -2,9 +2,9 @@
 import { IAppState } from '../Store/IAppState';
 import { Actions } from '../Actions/ActionsTypes';
 
-export function init(
+export function reduceSearchBooks(
   state: IAppState,
   action: Actions,
 ): IAppState {
-  return { test: action.payload };
+  return { searchBooks: action.payload };
 }
