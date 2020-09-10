@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 
-import { ISearchBooks } from './IGoogleApiBooks';
+import { ISearchBooks, IVolume } from './IGoogleApiBooks';
 
 export interface IAppState {
-    searchBooks: ISearchBooks
+    searchBooks: ISearchBooks,
+    selectedBook: IVolume | undefined;
 }

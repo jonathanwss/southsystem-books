@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
 import { ActionType, Actions } from '../Actions/ActionsTypes';
 import { IAppState } from '../Store/IAppState';
-import { reduceSearchBooks } from './ReducerApp';
+import { reduceSearchBooks, reduceSelectedBook } from './ReducerApp';
 
 export const initialState:IAppState  = {
+    selectedBook: undefined
 };
 
 function Reducer(
@@ -13,7 +14,9 @@ function Reducer(
   switch (action.type) {
     case ActionType.REDUCE_SEARCH_BOOKS:
       return { ...state, ...reduceSearchBooks(state, action) };
-  default:
+    case ActionType.SELECT_BOOK:
+        return { ...state, ...reduceSelectedBook(state, action) };
+    default:
       return state;
   }
 }

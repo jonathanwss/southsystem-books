@@ -5,6 +5,13 @@ import { Actions } from '../Actions/ActionsTypes';
 export function reduceSearchBooks(
   state: IAppState,
   action: Actions,
-): IAppState {
+) {
   return { searchBooks: action.payload };
+}
+
+export function reduceSelectedBook(
+    state: IAppState,
+    actions: Actions
+){
+    return { selectedBook: actions.payload };
 }
