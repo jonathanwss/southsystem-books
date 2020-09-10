@@ -1,17 +1,17 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/react-in-jsx-scope */
 
-import { View, Text } from 'react-native';
 import React from 'react';
+import ShellBar from './src/Components/ShellBar';
 
 
 interface IProps {}
 
 const SouthSystemApp:React.FC<IProps> = () => {
     return (
-        <View>
-            <Text>Teste</Text>
-        </View>
+        <React.Fragment>
+           <ShellBar />
+        </React.Fragment>
     );
 };
 
