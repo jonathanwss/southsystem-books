@@ -3,6 +3,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import ViewBooks from '../View/ViewBooks';
+import ViewBookDetails from '../View/ViewBookDetails';
 
 interface IProps {}
 const Launcher:React.FC<IProps> =  () => {
@@ -10,8 +11,9 @@ const Launcher:React.FC<IProps> =  () => {
 
     return (
         <NavigationContainer>
-            <stackNavigator.Navigator initialRouteName="home">
+            <stackNavigator.Navigator initialRouteName="Books">
                 <stackNavigator.Screen name="Books" component={ViewBooks} />
+                <stackNavigator.Screen name="BookDetails" component={ViewBookDetails} />
             </stackNavigator.Navigator>
         </NavigationContainer>
     );
