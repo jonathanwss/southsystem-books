@@ -22,9 +22,20 @@ const ViewBooks: React.FC<IProps> = () => {
     }, []);
 
     const _convertToIData = (volumes: IVolume[]) => {
-        const _converted = volumes.flatMap(vol => { return { title: vol.volumeInfo.title, imageUri: vol.volumeInfo.imageLinks.smallThumbnail };});
+        const _converted = volumes
+                            .flatMap(vol => {
+                                const title = vol.volumeInfo.title;
+                                const imageUri = vol.volumeInfo.imageLinks ? vol.volumeInfo.imageLinks.smallThumbnail : 'https://tutaki.org.nz/wp-content/uploads/2019/04/no-image-1.png';
+                                return { title, imageUri };
+                            });
 
         return _converted;
+    };
+
+    const _search = () => {
+        if (search){
+            dispatch(searchBookBySearchTerm(search));
+        }
     };
 
     return (
@@ -47,6 +58,7 @@ const ViewBooks: React.FC<IProps> = () => {
                         placeholder="Search"
                         onChangeText={setSearch}
                         value={search}
+                        onIconPress={() => _search()}
                     />
                     <View style={styles.space} />
                     {
