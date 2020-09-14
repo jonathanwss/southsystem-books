@@ -15,3 +15,10 @@ export function reduceSelectedBook(
 ){
     return { selectedBook: actions.payload };
 }
+
+export function reduceFavoriteBooks(
+  state: IAppState,
+  actions: Actions
+){
+  return { favoriteBooks: actions.payload };
+}
