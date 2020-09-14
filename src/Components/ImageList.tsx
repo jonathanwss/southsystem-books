@@ -5,7 +5,7 @@ import { IconButton, Colors } from 'react-native-paper';
 
 interface IProps{
     data: IData[];
-    onPress: any;
+    onPress?: any;
     onFavoritePress?: any;
 }
 
@@ -13,7 +13,7 @@ interface IData{
     title: string;
     imageUri: string;
     data: any;
-    isFavorite: boolean;
+    isFavorite?: boolean;
 }
 
 
