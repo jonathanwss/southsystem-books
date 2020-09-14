@@ -7,7 +7,7 @@ class RealmBook {
     const realm = await realmConnect();
     realm.write(() => {
         books.forEach(currentBook => {
-        realm.create(Book.schema.name, currentBook, !!realm.objectForPrimaryKey(Book.schema.name, currentBook.identification));
+        realm.create(Book.schema.name, currentBook, !!realm.objectForPrimaryKey(Book.schema.name, currentBook.id));
       });
     });
   }
@@ -15,6 +15,15 @@ class RealmBook {
   async deleteAll() {
     const realm = await realmConnect();
     realm.deleteModel(Book.schema.name);
+  }
+
+  async delete(book: Book) {
+    const realm = await realmConnect();
+    return realm.write(() => {
+      return realm.delete(
+        realm.objectForPrimaryKey(Book.schema.name, book.id),
+      );
+    });
   }
 
   async all(): Promise<Book[]> {
