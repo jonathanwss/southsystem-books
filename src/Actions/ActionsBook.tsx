@@ -20,7 +20,7 @@ export function getFavoriteBooksFromRealm(): ActionDispatcher{
 export function addFavoriteBook(volume: IVolume): ActionDispatcher{
     return async function (dispatch) {
         try {
-            const book = new Book(volume.volumeInfo.description, volume.volumeInfo.title, volume.id);
+            const book = new Book(volume.volumeInfo.description, volume.volumeInfo.title, volume.id, volume.volumeInfo.imageLinks ? volume.volumeInfo.imageLinks.smallThumbnail : '');
             await realmBook.create(...[book]);
 
             dispatch(getFavoriteBooksFromRealm());
@@ -33,7 +33,7 @@ export function addFavoriteBook(volume: IVolume): ActionDispatcher{
 export function removeFavoriteBook(volume: IVolume): ActionDispatcher{
     return async function (dispatch) {
         try {
-            const book = new Book(volume.volumeInfo.description, volume.volumeInfo.title, volume.id);
+            const book = new Book(volume.volumeInfo.description, volume.volumeInfo.title, volume.id, volume.volumeInfo.imageLinks ? volume.volumeInfo.imageLinks.smallThumbnail : '');
             await realmBook.delete(book);
 
             dispatch(getFavoriteBooksFromRealm());
