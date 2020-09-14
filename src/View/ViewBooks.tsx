@@ -29,7 +29,7 @@ const ViewBooks: React.FC<IProps> = ({ navigation }) => {
                             .flatMap(vol => {
                                 const title = vol.volumeInfo.title;
                                 const imageUri = vol.volumeInfo.imageLinks ? vol.volumeInfo.imageLinks.smallThumbnail : 'https://tutaki.org.nz/wp-content/uploads/2019/04/no-image-1.png';
-                                return { title, imageUri, data: vol };
+                                return { title, imageUri, data: vol, isFavorite: true };
                             });
 
         return _converted;
@@ -37,12 +37,12 @@ const ViewBooks: React.FC<IProps> = ({ navigation }) => {
 
     useEffect(() => {
         setPage(0);
-    }, [search])
+    }, [search]);
 
-    const _search = (page: number) => {
-        if (search){
-            setPage(page);
-            dispatch(searchBookBySearchTerm(search, page));
+    const _search = (pageSelected: number) => {
+        if (search && pageSelected >= 0){
+            setPage(pageSelected);
+            dispatch(searchBookBySearchTerm(search, pageSelected));
         }
     };
 
@@ -74,15 +74,22 @@ const ViewBooks: React.FC<IProps> = ({ navigation }) => {
                         onIconPress={() => _search(0)}
                     />
                     <View style={styles.space} />
-                    <View>
-                        <TouchableOpacity onPress={() => _search(page + 10)}>
-                            <Text>Next page ></Text>
-                        </TouchableOpacity>
+                    <View style={styles.viewRow}>
+                        <View style={styles.previousStyle}>
+                            <TouchableOpacity onPress={() => _search(page - 10)}>
+                                <Text> {'< Previous page'}</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={() => _search(page + 10)}>
+                                <Text>{'Next page >'}</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                     <View style={styles.space} />
                     {
                         books ?
-                        <ScrollView style={{ height: 600 }}>
+                        <ScrollView style={styles.scroll}>
                             <ImageList onPress={_onPress} data={_convertToIData(books.items)} />
                         </ScrollView>
                         :
@@ -108,5 +115,15 @@ const styles = StyleSheet.create({
     space: {
         flex: 1,
         padding: 10,
+    },
+    viewRow: {
+        flexDirection: 'row',
+    },
+    scroll: {
+        height: 600,
+    },
+    previousStyle: {
+        flex: 1,
+        justifyContent: 'flex-start',
     },
 });
