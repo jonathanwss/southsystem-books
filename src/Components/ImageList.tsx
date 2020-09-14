@@ -37,7 +37,7 @@ const ImageList: React.FC<IProps> = (props) => {
                     <View style={styles.starContainer}>
                         <IconButton color={item.isFavorite ? Colors.yellow600 : Colors.black} onPress={() => {
                             if (props.onFavoritePress) {
-                                props.onFavoritePress(item.data);
+                                props.onFavoritePress(item.data, item.isFavorite);
                             }
                         }} icon={'star'} />
                     </View>

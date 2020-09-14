@@ -11,7 +11,7 @@ import ImageList from '../Components/ImageList';
 import { IVolume } from '../Store/IGoogleApiBooks';
 import { ActionType } from '../Actions/ActionsTypes';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
-import { addFavoriteBook, getFavoriteBooksFromRealm } from '../Actions/ActionsBook';
+import { addFavoriteBook, getFavoriteBooksFromRealm, removeFavoriteBook } from '../Actions/ActionsBook';
 
 interface IProps {}
 
@@ -56,8 +56,12 @@ const ViewBooks: React.FC<IProps> = ({ navigation }) => {
         navigation.navigate('BookDetails');
     };
 
-    const _onFavorite = (volume: IVolume) => {
-        dispatch(addFavoriteBook(volume));
+    const _onFavorite = (volume: IVolume, isFavorite: boolean) => {
+        if (isFavorite){
+            dispatch(removeFavoriteBook(volume));
+        } else {
+            dispatch(addFavoriteBook(volume));
+        }
     };
 
     return (
