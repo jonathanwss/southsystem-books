@@ -16,14 +16,14 @@ import { addFavoriteBook, getFavoriteBooksFromRealm, removeFavoriteBook } from '
 interface IProps {}
 
 const ViewBooks: React.FC<IProps> = ({ navigation }) => {
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState('google');
     const [page, setPage] = useState(0);
     const dispatch = useDispatch();
     const books = useSelector(state => state.searchBooks);
     const favotireBooks = useSelector(state => state.favoriteBooks);
 
     useEffect(() => {
-        dispatch(searchBookBySearchTerm('naruto', 0));
+        dispatch(searchBookBySearchTerm('google', 0));
         dispatch(getFavoriteBooksFromRealm());
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
