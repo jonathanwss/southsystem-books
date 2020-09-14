@@ -1,16 +1,15 @@
 /* eslint-disable prettier/prettier */
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import { Card, Text } from 'react-native-paper';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PageHeaderTitle from '../Components/Headers/PageHeaderTitle';
 import PageHeader from '../Components/Headers/PageHeader';
 import HeaderTitle from '../Components/Headers/HeaderTitle';
-import { useDispatch, useSelector } from '../Store/Provider';
+import { useSelector } from '../Store/Provider';
 
 interface IProps {}
 
 const ViewBookDetails: React.FC<IProps> = () => {
-    const dispatch = useDispatch();
     const selectedBook = useSelector(state => state.selectedBook);
 
     useEffect(() => {
