@@ -64,6 +64,10 @@ const ViewBooks: React.FC<IProps> = ({ navigation }) => {
         }
     };
 
+    const _goToFavorites = () => {
+        navigation.navigate('FavoriteBooks');
+    };
+
     return (
         <View style={styles.view}>
             <View>
@@ -72,7 +76,8 @@ const ViewBooks: React.FC<IProps> = ({ navigation }) => {
                         <HeaderTitle
                         avatarItem={<></>}
                         avatarTitle={'Google books filter'}
-                        avatarDescription={''}
+                        avatarDescription={'Favorite Books'}
+                        actionDescription={() => _goToFavorites()}
                         />
                     </PageHeaderTitle>
                 </PageHeader>
