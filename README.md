@@ -8,7 +8,7 @@
   - Mark book as favorite to se it later
   - Read the description of searched books
 
-![Alt Text](https://media.giphy.com/media/l4e1pSYsHU8YpQMmZp/giphy.gif)
+![Alt Text](https://media.giphy.com/media/iDaVIMJ7JyXYiq01jO/giphy.gif)
 
 # This project uses the following technologies
 
