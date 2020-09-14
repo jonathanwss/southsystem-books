@@ -11,6 +11,7 @@ import ImageList from '../Components/ImageList';
 import { IVolume } from '../Store/IGoogleApiBooks';
 import { ActionType } from '../Actions/ActionsTypes';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
+import { addFavoriteBook, getFavoriteBooksFromRealm } from '../Actions/ActionsBook';
 
 interface IProps {}
 
@@ -19,8 +20,11 @@ const ViewBooks: React.FC<IProps> = ({ navigation }) => {
     const [page, setPage] = useState(0);
     const dispatch = useDispatch();
     const books = useSelector(state => state.searchBooks);
+    const favotireBooks = useSelector(state => state.favoriteBooks);
+
     useEffect(() => {
         dispatch(searchBookBySearchTerm('naruto', 0));
+        dispatch(getFavoriteBooksFromRealm());
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -29,7 +33,8 @@ const ViewBooks: React.FC<IProps> = ({ navigation }) => {
                             .flatMap(vol => {
                                 const title = vol.volumeInfo.title;
                                 const imageUri = vol.volumeInfo.imageLinks ? vol.volumeInfo.imageLinks.smallThumbnail : 'https://tutaki.org.nz/wp-content/uploads/2019/04/no-image-1.png';
-                                return { title, imageUri, data: vol, isFavorite: true };
+                                const isFavorite = favotireBooks.some(book => book.id === vol.id);
+                                return { title, imageUri, data: vol, isFavorite: isFavorite };
                             });
 
         return _converted;
@@ -49,6 +54,10 @@ const ViewBooks: React.FC<IProps> = ({ navigation }) => {
     const _onPress = (volume: IVolume) => {
         dispatch({ type: ActionType.SELECT_BOOK, payload: volume });
         navigation.navigate('BookDetails');
+    };
+
+    const _onFavorite = (volume: IVolume) => {
+        dispatch(addFavoriteBook(volume));
     };
 
     return (
@@ -90,7 +99,7 @@ const ViewBooks: React.FC<IProps> = ({ navigation }) => {
                     {
                         books ?
                         <ScrollView style={styles.scroll}>
-                            <ImageList onPress={_onPress} data={_convertToIData(books.items)} />
+                            <ImageList onFavoritePress={_onFavorite} onPress={_onPress} data={_convertToIData(books.items)} />
                         </ScrollView>
                         :
                         <></>
