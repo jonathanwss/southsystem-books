@@ -1,6 +1,5 @@
-import Book from 'src/Schema/Book';
 /* eslint-disable prettier/prettier */
-
+import Book from '../Schema/Book';
 import { ISearchBooks, IVolume } from './IGoogleApiBooks';
 
 export interface IAppState {
