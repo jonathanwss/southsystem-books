@@ -1,17 +1,19 @@
 /* eslint-disable prettier/prettier */
 import { FlatList, TouchableOpacity, View, ImageBackground, Text, StyleSheet } from 'react-native';
 import React from 'react';
-import { accessibilityProps } from 'react-native-paper/lib/typescript/src/components/MaterialCommunityIcon';
+import { IconButton, Colors } from 'react-native-paper';
 
 interface IProps{
     data: IData[];
     onPress: any;
+    onFavoritePress?: any;
 }
 
 interface IData{
     title: string;
     imageUri: string;
     data: any;
+    isFavorite: boolean;
 }
 
 
@@ -30,7 +32,14 @@ const ImageList: React.FC<IProps> = (props) => {
                         <ImageBackground style={styles.imageSize} source={ { uri: item.imageUri }} />
                     </View>
                     <View style={styles.titleContainer}>
-                        <Text>{item.title}</Text>
+                        <Text style={styles.textTitle}>{item.title}</Text>
+                    </View>
+                    <View style={styles.starContainer}>
+                        <IconButton color={item.isFavorite ? Colors.yellow600 : Colors.black} onPress={() => {
+                            if (props.onFavoritePress) {
+                                props.onFavoritePress(item.data);
+                            }
+                        }} icon={'star'} />
                     </View>
                 </View>
             </TouchableOpacity>
@@ -51,15 +60,25 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
+        marginBottom: 5,
     },
     imageContainer: {
         flex: 1,
     },
     titleContainer:{
-        flex: 2,
+        flex: 3,
+        justifyContent: 'center',
+        textAlign: 'center',
+        alignContent: 'center',
+    },
+    starContainer: {
+        flex: 1,
     },
     imageSize:{
-        width: 100,
-        height: 100,
+        width: '100%',
+        height: '100%',
+    },
+    textTitle: {
+        textAlign: 'center',
     },
 });
