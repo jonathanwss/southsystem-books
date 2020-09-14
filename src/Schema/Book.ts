@@ -2,20 +2,21 @@
 export default class Book{
     public description: string;
     public title: string;
-    public identification: string;
+    public id: string;
 
     constructor(description:string, title:string, identification:string){
         this.description = description;
-        this.identification = identification;
+        this.id = identification;
         this.title = title;
     }
 
     static schema = {
         name: 'Book',
+        primaryKey: 'id',
         properties: {
-          identification: { type: 'string', optional: true },
+          id: { type: 'string', optional: true },
           title: { type: 'string', optional: true },
-          description: { type: 'string', optional: true }
+          description: { type: 'string', optional: true },
         },
       };
 }
