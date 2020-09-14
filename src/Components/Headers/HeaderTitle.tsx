@@ -7,12 +7,14 @@ import {
 
 import AvatarElement from '../Avatar/AvatarElement';
 import { Text } from 'react-native-paper';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface IProps {
     avatarItem: any;
     avatarTitle: string;
     avatarDescription: string;
     actionTitle?: JSX.Element;
+    actionDescription?: any;
 }
 
 const HeaderTitle: React.FC<IProps> = (props) => {
@@ -25,7 +27,13 @@ const HeaderTitle: React.FC<IProps> = (props) => {
                 </View>
                 <View style={styles.text}>
                     <Text numberOfLines={1} style={styles.avatarTitle}>{props.avatarTitle}</Text>
-                    <Text numberOfLines={2} style={styles.avatarDescription}>{props.avatarDescription}</Text>
+                    <TouchableOpacity onPress={() => {
+                        if (props.actionDescription) {
+                            props.actionDescription();
+                        }
+                    }}>
+                        <Text numberOfLines={2} style={styles.avatarDescription}>{props.avatarDescription}</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.actionHeader}>
